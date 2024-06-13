@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Massively by HTML5 UP</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            /* Style for the pop-up */
+            #popup {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.8);
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+                overflow-y: auto;
+            }
+
+            #popup-content {
+                display: flex;
+                flex-direction: column; /* Display images in a single column */
+                align-items: center;
+                max-height: 100%;
+                overflow-y: auto;
+                background: transparent;
+                padding: 20px;
+            }
+
+            #popup img {
+                width: 40%; /* Make the images smaller */
+                height: auto;
+                margin: 20px 0; /* Space between images */
+                object-fit: cover;
+            }
+
+            #popup .close {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                color: #ffffff;
+                font-size: 40px; /* Increase the font size */
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body class="is-preload">
+        <!-- Wrapper -->
+        <div id="wrapper" class="fade-in">
+
+            <!-- Intro -->
+            <div id="intro">
+                <h1>Sara's Art Portfolio<br /></h1>
+                <p>Hello, my name is Diaconu Sara and this is my illustration portfolio, where you will see my artworks and other pieces of my creation.</p>
+            </div>
+
+            <!-- Header -->
+            <header id="header"></header>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul class="links">
+                    <li class="active"><a href="index.html">My work</a></li>
+                    <li><a href="generic.html">About me</a></li>
+                </ul>
+                <ul class="icons">
+                    <li><a href="https://www.facebook.com/DiaconuSara01/" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    <li><a href="https://www.instagram.com/d_saraa1/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                </ul>
+            </nav>
+
+            <!-- Main -->
+            <div id="main">
+
+                <!-- Posts -->
+                <section class="posts">
+                    <article>
+                        <header>
+                            <h2><a>Original characters</a></h2>
+                        </header>
+                        <a class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+                        <ul class="actions special">
+                            <li><a href="#" class="button full-list-btn" data-images="pic12,pic15,pic13,pic18,pic11,pic19,pic20,draw7,draw8">Full list</a></li>
+                        </ul>
+                    </article>
+                     <article>
+                        <header>
+                            <h2><a>Fan art</a></h2>
+                        </header>
+                        <a class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+                        <ul class="actions special">
+                            <li><a href="#" class="button full-list-btn" data-images="draw15,draw1,draw2,draw5,draw4,draw6,pic05,draw10,draw11,draw12,draw13,draw14,draw17,draw16,draw18,draw19,draw20,draw21">Full list</a></li>
+                        </ul>
+                    </article>
+                    <article>
+                        <header>
+                            <h2><a href="#">UI Design</a></h2>
+                        </header>
+                        <a class="image fit"><img src="images/ui2.jpg" alt="" /></a>
+                        <ul class="actions special">
+                            <li><a href="#" class="button full-list-btn" data-images="UserInterface10,UserInterface11,UserInterface12,UserInterface13">Full list</a></li>
+                        </ul>
+                    </article>
+                    <article>
+                        <header>
+                            
+                        </header>
+                        </ul>
+                    </article>
+                </section>
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <section>
+                    <form method="post" action="#">
+                        <div class="fields"></div>
+                        <ul class="actions"></ul>
+                    </form>
+                </section>
+                <section class="split contact">
+                   
+                    <section>
+                        <h3>Email</h3>
+                        <p>diaconu.sara20@gmail.com</p>
+                    </section>
+                    <section>
+                        <h3>Social</h3>
+                        <ul class="icons alt">
+                            <li><a href="https://www.facebook.com/DiaconuSara01/" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="https://www.instagram.com/d_saraa1/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+                        </ul>
+                    </section>
+                </section>
+            </footer>
+
+            <!-- Pop-up -->
+            <div id="popup">
+                <div class="close">&times;</div>
+                <div id="popup-content"></div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const buttons = document.querySelectorAll('.full-list-btn');
+                const popup = document.getElementById('popup');
+                const popupContent = document.getElementById('popup-content');
+                const closeBtn = popup.querySelector('.close');
+
+                buttons.forEach(button => {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const images = button.getAttribute('data-images').split(',');
+                        popupContent.innerHTML = images.map(img => `<img src="images/${img}.jpg" alt="${img}">`).join('');
+                        popup.style.display = 'flex';
+                    });
+                });
+
+                closeBtn.addEventListener('click', function() {
+                    popup.style.display = 'none';
+                });
+
+                popup.addEventListener('click', function(event) {
+                    // Check if the clicked element is an image within the popup-content
+                    if (!event.target.closest('#popup-content img')) {
+                        popup.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
